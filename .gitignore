@@ -1,0 +1,38 @@
+# Local .terraform directories
+.terraform/
+
+# Local directories
+archived-files/
+
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# CLI configuration files
+.terraform.lock.hcl
+# *.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+terraform.tfvars
+
+# Sensitive data files
+*.pem
+*.key
+*.crt
+*.env
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# OS-specific files
+.DS_Store
+Thumbs.db
