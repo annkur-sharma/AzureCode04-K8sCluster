@@ -1,5 +1,5 @@
 # AzureCode04-K8sCluster
-AzureCode04-K8sCluster - To setup RG, Vnet, Subnet, K8s CLuster for the resources.
+AzureCode04-K8sCluster - To setup RG, Vnet, Subnet, K8s Cluster for the resources.
 
 ## Summary
 #### Following resources are created on the Azure Colud environment by executing the code.
@@ -64,8 +64,15 @@ Outputs:
 
 root_output_child_kubernetes_cluster = "K8s Cluster Name: aks1-xxxxxxxxxx"          # ☸️ Kubernetes Cluster Name 
 root_output_resource_group_name      = "Resource Group Name: rg-aks1-xxxxxxxxxx"    # 📦 Resource Group Name
-
 ````
+
+# Next Steps
+### 📤 Open Powershell CLI and execute the following command to merge the K8s cluster in your config file.
+## Users can use the `kubectl` commands in their CLI.
+````yaml
+az aks get-credentials --name "aks1-xxxxxxxxxx" --resource-group "rg-aks1-xxxxxxxxxx" --overwrite-existing
+````
+
 
 # 🧠 Troubleshooting errors
 ##  Error⚡ Provisioning is restricted in this region. Please choose a different region.
