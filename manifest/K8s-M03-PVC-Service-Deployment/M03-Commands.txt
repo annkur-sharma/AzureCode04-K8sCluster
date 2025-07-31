@@ -1,0 +1,28 @@
+C:\AzureCode04-K8sCluster> cd .\manifest\
+
+C:\AzureCode04-K8sCluster\manifest> cd .\K8s-M03-PVC-Service-Deployment\
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M03-PVC-Service-Deployment> kubectl apply -f .\M03-S01-PVC-Azurefile.yaml
+persistentvolumeclaim/m03-s01-pvc-guid-log created
+persistentvolumeclaim/m03-s01-pvc-user-log created
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M03-PVC-Service-Deployment> kubectl apply -f .\M03-S02-Service.yaml      
+service/m03-s02-service created
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M03-PVC-Service-Deployment> kubectl get svc
+NAME              TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)          AGE
+m03-s02-service   LoadBalancer   10.0.174.21   4.178.236.213   8003:30935/TCP   3m2s
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M03-PVC-Service-Deployment> kubectl apply -f .\M03-S03-Deployment.yaml   
+deployment.apps/m03-s03-deployment created
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M03-PVC-Service-Deployment> kubectl get pods
+NAME                                 READY   STATUS    RESTARTS   AGE
+m03-s03-deployment-bfcb94c64-2hwgl   1/1     Running   0          14s
+m03-s03-deployment-bfcb94c64-7q86t   1/1     Running   0          14s
+m03-s03-deployment-bfcb94c64-bnt5q   1/1     Running   0          14s
+m03-s03-deployment-bfcb94c64-jwlm6   1/1     Running   0          14s
+m03-s03-deployment-bfcb94c64-xhdqh   1/1     Running   0          14s
+
+# Pick the External IP from svc
+Open URL: http://4.178.236.213:8003

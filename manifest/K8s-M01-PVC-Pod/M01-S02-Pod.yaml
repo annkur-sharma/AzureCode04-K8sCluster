@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: m01-s02-pod
+  labels:
+    appname: m01-colorsphere-app
+spec:
+  containers:
+  - name: m01-s02-container
+    image: annkursharma/colorsphere:green
+    ports:
+    - containerPort: 3000
+    volumeMounts:
+        - mountPath: /app/public/guid-log
+          name: m01-s02-storage-guid-log
+        - mountPath: /app/public/user-log
+          name: m01-s02-storage-user-log
+  volumes:
+    - name: m01-s02-storage-guid-log
+      persistentVolumeClaim:
+        claimName: m01-s01-pvc-guid-log
+    - name: m01-s02-storage-user-log
+      persistentVolumeClaim:
+        claimName: m01-s01-pvc-user-log

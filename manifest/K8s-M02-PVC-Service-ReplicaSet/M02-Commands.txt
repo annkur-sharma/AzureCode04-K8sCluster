@@ -1,0 +1,26 @@
+C:\AzureCode04-K8sCluster> cd .\manifest\
+
+C:\AzureCode04-K8sCluster\manifest> cd .\K8s-M02-PVC-Service-ReplicaSet\
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M02-PVC-Service-ReplicaSet> kubectl apply -f .\M02-S01-PVC-Azurefile.yaml
+persistentvolumeclaim/m02-s01-pvc-guid-log created
+persistentvolumeclaim/m02-s01-pvc-user-log created
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M02-PVC-Service-ReplicaSet> kubectl apply -f .\M02-S02-Service.yaml      
+service/m02-s02-service created
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M02-PVC-Service-ReplicaSet> kubectl get svc
+NAME                  TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)          AGE
+m02-s02-service       LoadBalancer   10.0.49.120   4.178.200.198   8002:32704/TCP   20s
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M02-PVC-Service-ReplicaSet> kubectl apply -f .\M02-S03-ReplicaSet.yaml   
+replicaset.apps/m02-s03-replica-set created
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M02-PVC-Service-ReplicaSet> kubectl get pods
+NAME                              READY   STATUS    RESTARTS   AGE
+m02-s03-replica-set-9h8wj         1/1     Running   0          23s
+m02-s03-replica-set-l29p9         1/1     Running   0          23s
+m02-s03-replica-set-wvv8l         1/1     Running   0          23s
+
+# Pick the External IP from svc
+Open URL: http://4.178.200.198:8002

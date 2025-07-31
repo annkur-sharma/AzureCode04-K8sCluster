@@ -1,0 +1,21 @@
+C:\AzureCode04-K8sCluster> cd .\manifest\
+
+C:\AzureCode04-K8sCluster\manifest> cd .\K8s-M01-PVC-Pod\
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M01-PVC-Pod> kubectl apply -f .\M01-S01-PVC-Azurefile.yaml
+persistentvolumeclaim/m01-s01-pvc-guid-log created
+persistentvolumeclaim/m01-s01-pvc-user-log created
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M01-PVC-Pod> kubectl apply -f .\M01-S02-Pod.yaml
+pod/m01-s02-pod created
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M01-PVC-Pod> kubectl get pods
+NAME                              READY   STATUS    RESTARTS   AGE
+m01-s02-pod                       1/1     Running   0          11s
+
+C:\AzureCode04-K8sCluster\manifest\K8s-M01-PVC-Pod> kubectl port-forward pod/m01-s02-pod 8888:3000
+Forwarding from 127.0.0.1:8888 -> 3000
+Forwarding from [::1]:8888 -> 3000
+Handling connection for 8888
+
+Open URL: http://localhost:8888

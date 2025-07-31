@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: m02-s03-replica-set
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      appname: m02-colorsphere-app
+  template:
+    metadata:
+      name: m02-s03-template
+      labels:
+        appname: m02-colorsphere-app
+    spec:
+      containers:
+      - name: m02-s03-container
+        image: annkursharma/colorsphere:yellow
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - mountPath: /app/public/guid-log
+          name: m02-s03-storage-guid-log
+        - mountPath: /app/public/user-log
+          name: m02-s03-storage-user-log
+      volumes:
+        - name: m02-s03-storage-guid-log
+          persistentVolumeClaim:
+            claimName: m02-s01-pvc-guid-log
+        - name: m02-s03-storage-user-log
+          persistentVolumeClaim:
+            claimName: m02-s01-pvc-user-log

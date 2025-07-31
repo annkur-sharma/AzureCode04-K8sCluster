@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: m03-s03-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      appname: m03-colorsphere-app
+  template:
+    metadata:
+      name: m03-s03-template
+      labels:
+        appname: m03-colorsphere-app
+    spec:
+      containers:
+      - name: m03-s03-container
+        image: annkursharma/colorsphere:blue
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - mountPath: /app/public/guid-log
+          name: m03-s03-storage-guid-log
+        - mountPath: /app/public/user-log
+          name: m03-s03-storage-user-log
+      volumes:
+        - name: m03-s03-storage-guid-log
+          persistentVolumeClaim:
+            claimName: m03-s01-pvc-guid-log
+        - name: m03-s03-storage-user-log
+          persistentVolumeClaim:
+            claimName: m03-s01-pvc-user-log
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
